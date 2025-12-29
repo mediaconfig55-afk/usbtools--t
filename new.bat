@@ -19,7 +19,8 @@ if errorlevel 1 (
 )
 
 :START
-set "VERSION=7.5 GITHUB TEST"
+set "VERSION=7.5"
+
 
 echo *** BU SURUM GITHUB'DAN CEKILDI ***
 pause
