@@ -18,15 +18,15 @@ if %errorLevel% neq 0 (
 
 :: --- ARAYUZ AYARLARI ---
 color 0B
-title Professional IT Support & USB Suite v8.1 [STABLE] - Code Emre Bilgin
+title Professional IT Support & USB Suite v8.2 [STABLE] - Code Emre Bilgin
 mode con: cols=125 lines=62
 
 :MENU
 cls
 echo.
 echo  #########################################################################################################################
-echo  #                                  USB YONETIM, SISTEM BAKIM VE ONARIM KONSOLU (V8.1)                                   #
-echo  #                                         ==== CODE EMRE BILGIN - FINAL ====                                            #
+echo  #                                  USB YONETIM, SISTEM BAKIM VE ONARIM KONSOLU (V8.2)                                   #
+echo  #                                         •••• CODE EMRE BILGIN - FINAL ••••                                            #
 echo  #########################################################################################################################
 echo.
 echo  •••• USB VE DISK ISLEMLERI ••••             •••• SISTEM ONARIM (DISM/SFC) ••••          •••• AG VE INTERNET ••••
