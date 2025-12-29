@@ -12,8 +12,8 @@ if %errorLevel% neq 0 (
 )
 
 :: Renk ve Pencere Ayarları
-color 0A
-title Professional IT Support & USB Suite v7.0 - Code Emre Bilgin
+color 0B
+title Professional IT Support & USB Suite v7.1 - Code Emre Bilgin
 mode con: cols=110 lines=50
 
 :MENU
