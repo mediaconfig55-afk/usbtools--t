@@ -24,21 +24,7 @@ mode con: cols=110 lines=52
 color 0B
 
 echo [+] Guncellemeler Kontrol Ediliyor...
-powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $u = '%RAW_LINK%?v=' + (Get-Random); try { (New-Object Net.WebClient).DownloadFile($u, '%temp%\new_up.bat') } catch { exit }" >nul 2>&1
 
-if exist "%temp%\new_up.bat" (
-    fc /b "%~f0" "%temp%\new_up.bat" >nul
-    if %errorLevel% neq 0 (
-        echo.
-        echo [+] YENI SURUM BULUNDU! v%VERSION% Yukleniyor...
-        copy /y "%temp%\new_up.bat" "%~f0" >nul
-        del "%temp%\new_up.bat" >nul 2>&1
-        timeout /t 2 >nul
-        start "" "%~f0"
-        exit
-    )
-    del "%temp%\new_up.bat" >nul 2>&1
-)
 
 :MENU
 cls
