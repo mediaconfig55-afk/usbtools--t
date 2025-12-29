@@ -20,6 +20,12 @@ if %errorLevel% neq 0 (
 :: ======================================================
 set "VERSION=7.4"
 
+echo.
+echo *** GITHUB GUNCELLEME TESTI AKTIF ***
+echo.
+pause
+
+
 title Professional IT Support & USB Suite v%VERSION% - Code Emre Bilgin
 mode con: cols=110 lines=52
 color 0B
