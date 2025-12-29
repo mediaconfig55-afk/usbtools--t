@@ -20,7 +20,7 @@ mode con: cols=110 lines=50
 cls
 echo.
 echo  ##########################################################################################
-echo  #                 USB YONETIM VE SISTEM BAKIM KONSOLU (V7.0 ULTIMATE)                    #
+echo  #                 USB YONETIM VE SISTEM BAKIM KONSOLU (V7.1.0 ULTIMATE)                    #
 echo  #                            ==== CODE EMRE BILGIN ====                                  #
 echo  ##########################################################################################
 echo.
