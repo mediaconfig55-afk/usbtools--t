@@ -11,7 +11,7 @@ if %errorLevel% neq 0 (
 )
 
 :: --- AYARLAR VE GÜNCELLEME SİSTEMİ ---
-SET "VERSION=7.1"
+SET "VERSION=7.2"
 :: Senin verdiğin yeni GitHub Raw Linki:
 SET "RAW_LINK=https://raw.githubusercontent.com/mediaconfig55-afk/usbtools--t/main/new.bat"
 
