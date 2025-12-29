@@ -1,4 +1,7 @@
 @echo off
+echo USBTOOLS TEST BASLADI
+pause
+
 setlocal EnableExtensions EnableDelayedExpansion
 chcp 65001 >nul
 cd /d "%~dp0"
