@@ -1,27 +1,47 @@
 @echo off
 setlocal enabledelayedexpansion
-:: Çalışma dizinini sabitle (EXE dönüşüm hatasını önler)
+chcp 65001 >nul
 cd /d "%~dp0"
 
-:: Yönetici izni kontrolü
+:: --- YÖNETİCİ KONTROLÜ ---
 net session >nul 2>&1
 if %errorLevel% neq 0 (
     echo [HATA] Lutfen bu dosyayi SAG TIKLAYIP "Yonetici Olarak Calistir" deyin.
-    pause
-    exit
+    pause & exit
 )
 
-:: Renk ve Pencere Ayarları
+:: --- AYARLAR VE GÜNCELLEME SİSTEMİ ---
+SET "VERSION=7.0"
+:: Senin verdiğin yeni GitHub Raw Linki:
+SET "RAW_LINK=https://raw.githubusercontent.com/mediaconfig55-afk/usbtools--t/main/new.bat"
+
+title Professional IT Support & USB Suite v%VERSION% - Code Emre Bilgin
+mode con: cols=110 lines=52
 color 0A
-title Professional IT Support & USB Suite v7.0 - Code Emre Bilgin
-mode con: cols=110 lines=50
+
+echo [+] Guncellemeler Kontrol Ediliyor...
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $u = '%RAW_LINK%?v=' + (Get-Random); try { (New-Object Net.WebClient).DownloadFile($u, '%temp%\new_up.bat') } catch { exit }" >nul 2>&1
+
+if exist "%temp%\new_up.bat" (
+    fc /b "%~f0" "%temp%\new_up.bat" >nul
+    if %errorLevel% neq 0 (
+        echo.
+        echo [+] YENI SURUM BULUNDU! v%VERSION% Yukleniyor...
+        copy /y "%temp%\new_up.bat" "%~f0" >nul
+        del "%temp%\new_up.bat" >nul 2>&1
+        timeout /t 2 >nul
+        start "" "%~f0"
+        exit
+    )
+    del "%temp%\new_up.bat" >nul 2>&1
+)
 
 :MENU
 cls
 echo.
 echo  ##########################################################################################
-echo  #                 USB YONETIM VE SISTEM BAKIM KONSOLU (V7.0 ULTIMATE)                    #
-echo  #                            ==== CODE EMRE BILGIN ====                                  #
+echo  #                 USB YONETIM VE SISTEM BAKIM KONSOLU (V%VERSION% ULTIMATE)                  #
+echo  #                           ==== CODE EMRE BILGIN ====                                   #
 echo  ##########################################################################################
 echo.
 echo  --- USB VE DISK ISLEMLERI ---             --- SISTEM BAKIM VE ONARIM ---
@@ -53,7 +73,7 @@ echo.                                           [44] Windows Telemetriyi KAPAT
 echo  ##########################################################################################
 set /p choice="Islem seciniz [1-44]: "
 
-:: Yonlendirmeler
+:: --- YÖNLENDİRMELER ---
 if "%choice%"=="1" goto LIST
 if "%choice%"=="2" goto FORMAT_SELECTION
 if "%choice%"=="3" goto PROTECT
@@ -89,8 +109,6 @@ if "%choice%"=="32" goto ROUTE_TEST
 if "%choice%"=="33" goto NBTSTAT_TEST
 if "%choice%"=="34" goto WIFI_PASSWORD
 if "%choice%"=="35" exit
-
-:: Yeni Eklenen Fonksiyonlar
 if "%choice%"=="36" goto RESET_UPDATE
 if "%choice%"=="37" goto BACKUP_DRIVERS
 if "%choice%"=="38" goto ULTRA_PERFORMANCE
@@ -105,16 +123,10 @@ goto MENU
 :: --- FONKSIYONLAR ---
 
 :LIST
-cls
-echo list disk > ds.txt
-diskpart /s ds.txt & del ds.txt
-pause
-goto MENU
+cls & echo list disk > ds.txt & diskpart /s ds.txt & del ds.txt & pause & goto MENU
 
 :FORMAT_SELECTION
-cls
-echo list disk > ds.txt
-diskpart /s ds.txt & del ds.txt
+cls & echo list disk > ds.txt & diskpart /s ds.txt & del ds.txt
 set /p diskID="Formatlanacak Disk No: "
 echo [1] NTFS [2] FAT32 [3] exFAT
 set /p fs_choice="Secim: "
@@ -124,272 +136,144 @@ if "%fs_choice%"=="3" set "fs_type=exfat"
 set /p confirm="Disk %diskID% silinecek. Onay (E/H)? "
 if /i "%confirm%" NEQ "E" goto MENU
 (echo select disk %diskID% & echo clean & echo create partition primary & echo format fs=%fs_type% quick & echo assign) > ds.txt
-diskpart /s ds.txt & del ds.txt
-echo [TAMAM] Islem bitti.
-pause
-goto MENU
+diskpart /s ds.txt & del ds.txt & echo [TAMAM] Islem bitti. & pause & goto MENU
 
 :PROTECT
-cls
-set /p diskID="Disk No: "
-(echo select disk %diskID% & echo attributes disk set readonly) > ds.txt
-diskpart /s ds.txt & del ds.txt
-echo [BILGI] Koruma Aktif.
-pause
-goto MENU
+cls & set /p diskID="Disk No: " & (echo select disk %diskID% & echo attributes disk set readonly) > ds.txt
+diskpart /s ds.txt & del ds.txt & echo [BILGI] Koruma Aktif. & pause & goto MENU
 
 :UNPROTECT
-cls
-set /p diskID="Disk No: "
-(echo select disk %diskID% & echo attributes disk clear readonly) > ds.txt
-diskpart /s ds.txt & del ds.txt
-echo [BILGI] Koruma Kaldirildi.
-pause
-goto MENU
+cls & set /p diskID="Disk No: " & (echo select disk %diskID% & echo attributes disk clear readonly) > ds.txt
+diskpart /s ds.txt & del ds.txt & echo [BILGI] Koruma Kaldirildi. & pause & goto MENU
 
 :RESET_UPDATE
-cls
-echo Windows Update servisleri sifirlaniyor...
-net stop wuauserv & net stop cryptSvc & net stop bits & net stop msiserver
-ren C:\Windows\SoftwareDistribution SoftwareDistribution.old
-ren C:\Windows\System32\catroot2 catroot2.old
-net start wuauserv & net start cryptSvc & net start bits & net start msiserver
-echo [TAMAM] Update onarildi.
-pause
-goto MENU
+cls & echo Servisler durduruluyor... & net stop wuauserv & net stop cryptSvc & net stop bits & net stop msiserver
+ren C:\Windows\SoftwareDistribution SoftwareDistribution.old & ren C:\Windows\System32\catroot2 catroot2.old
+net start wuauserv & net start cryptSvc & net start bits & net start msiserver & echo [TAMAM] Update onarildi. & pause & goto MENU
 
 :BACKUP_DRIVERS
-cls
-echo Suruculer masaustune yedekleniyor...
-mkdir "%USERPROFILE%\Desktop\Driver_Yedek"
-dism /online /export-driver /destination:"%USERPROFILE%\Desktop\Driver_Yedek"
-echo [TAMAM] Yedekleme bitti.
-pause
-goto MENU
+cls & echo Suruculer yedekleniyor... & mkdir "%USERPROFILE%\Desktop\Driver_Yedek"
+dism /online /export-driver /destination:"%USERPROFILE%\Desktop\Driver_Yedek" & echo [TAMAM] Masaustune bakin. & pause & goto MENU
 
 :ULTRA_PERFORMANCE
-cls
-powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
-echo [BILGI] Nihai Performans modu aktif edildi. Guc ayarlarindan secin.
-pause
-goto MENU
+cls & powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 & echo [BILGI] Nihai Performans aktif. & pause & goto MENU
 
 :RESET_HOSTS
-cls
-echo Hosts dosyasi orijinal haline donduruluyor...
-set "hosts=%windir%\system32\drivers\etc\hosts"
-attrib -r -s -h %hosts%
-echo 127.0.0.1 localhost > %hosts%
-echo ::1 localhost >> %hosts%
-echo [TAMAM] Hosts sifirlandi.
-pause
-goto MENU
+cls & set "hosts=%windir%\system32\drivers\etc\hosts" & attrib -r -s -h %hosts%
+echo 127.0.0.1 localhost > %hosts% & echo ::1 localhost >> %hosts% & echo [TAMAM] Hosts sifirlandi. & pause & goto MENU
 
 :CLEAR_SPOOLER
-cls
-net stop spooler
-del /Q /F /S "%systemroot%\System32\Spool\Printers\*.*"
-net start spooler
-echo [TAMAM] Yazici kuyrugu temizlendi.
-pause
-goto MENU
+cls & net stop spooler & del /Q /F /S "%systemroot%\System32\Spool\Printers\*.*" & net start spooler & echo [TAMAM] Yazici kuyruğu temizlendi. & pause & goto MENU
 
 :RESTART_EXPLORER
-taskkill /f /im explorer.exe & start explorer.exe
-goto MENU
+taskkill /f /im explorer.exe & start explorer.exe & goto MENU
 
 :BIOS_INFO
-cls
-wmic baseboard get product,Manufacturer,version,serialnumber
-pause
-goto MENU
+cls & wmic baseboard get product,Manufacturer,version,serialnumber & pause & goto MENU
 
 :BATTERY_REPORT
-cls
-powercfg /batteryreport /output "%USERPROFILE%\Desktop\Pil_Raporu.html"
-echo [TAMAM] Rapor masaustune kaydedildi.
-start "" "%USERPROFILE%\Desktop\Pil_Raporu.html"
-pause
-goto MENU
+cls & powercfg /batteryreport /output "%USERPROFILE%\Desktop\Pil_Raporu.html" & start "" "%USERPROFILE%\Desktop\Pil_Raporu.html" & pause & goto MENU
 
 :DISABLE_TELEMETRY
-cls
-echo Telemetri ve Veri Toplama kapatiliyor...
-sc delete DiagTrack
-sc delete dmwappushservice
-echo "" > C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f
-echo [TAMAM] Islem bitti.
-pause
-goto MENU
+cls & echo Telemetri kapatiliyor... & sc delete DiagTrack & sc delete dmwappushservice
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f & pause & goto MENU
 
-:: Diger v6 fonksiyonlari (SFC, CHKDSK, IP vb.) buraya ayni sekilde eklenmistir.
 :COMPUTER_INFO
-cls
-wmic bios get serialnumber & hostname & wmic computersystem get manufacturer, model
-pause
-goto MENU
+cls & wmic bios get serialnumber & hostname & wmic computersystem get manufacturer, model & pause & goto MENU
 
 :IP
-cls
-ipconfig | findstr /i "IPv4"
-pause
-goto MENU
+cls & ipconfig | findstr /i "IPv4" & pause & goto MENU
 
 :LICENSE
-cls
-slmgr /xpr & wmic path softwarelicensingservice get OA3xOriginalProductKey
-pause
-goto MENU
+cls & slmgr /xpr & pause & goto MENU
 
 :SYSINFO
-cls
-systeminfo
-pause
-goto MENU
+cls & systeminfo & pause & goto MENU
 
 :SFC
-cls
-sfc /scannow
-pause
-goto MENU
+cls & sfc /scannow & pause & goto MENU
 
 :CHKDSK
-cls
-set /p drv="Surucu Harfi: "
-chkdsk %drv%: /f /r /x
-pause
-goto MENU
+cls & set /p drv="Surucu Harfi: " & chkdsk %drv%: /f /r /x & pause & goto MENU
 
 :CLEAN_TEMP_FILES
-cls
-del /q /f /s %TEMP%\* & del /q /f /s %WINDIR%\Temp\*
-pause
-goto MENU
+cls & del /q /f /s %TEMP%\* & del /q /f /s %WINDIR%\Temp\* & echo [TAMAM] Temizlendi. & pause & goto MENU
 
 :WIFI_PASSWORD
-cls
-set /p wifi="Ag Adi: "
-netsh wlan show profile name="%wifi%" key=clear | findstr /i "Key Content"
-pause
-goto MENU
+cls & set /p wifi="Ag Adi: " & netsh wlan show profile name="%wifi%" key=clear | findstr /i "Key Content" & pause & goto MENU
 
 :CLEAR_DNS
-ipconfig /flushdns
-pause
-goto MENU
+ipconfig /flushdns & echo [TAMAM] DNS Temizlendi. & pause & goto MENU
 
 :UPDATE_PROGRAMS
-winget upgrade --all
-pause
-goto MENU
+winget upgrade --all & pause & goto MENU
 
 :UPDATE_STORE_APPS
-powershell -Command "Get-AppxPackage | Foreach {Add-AppxPackage -Path $_.InstallLocation} "
-pause
-goto MENU
+powershell -Command "Get-AppxPackage | Foreach {Add-AppxPackage -Path $_.InstallLocation -Register \"$($_.InstallLocation)\AppXManifest.xml\" -DisableDevelopmentMode}" & pause & goto MENU
 
 :GPUPDATE
-gpupdate /force
-pause
-goto MENU
+gpupdate /force & pause & goto MENU
 
 :WINDOWSUPDATE
-wmic qfe list brief /format:table
-pause
-goto MENU
+wmic qfe list brief /format:table & pause & goto MENU
 
 :IP_MENU
-cls
-echo [1] All [2] Renew [3] Release
+cls & echo [1] All [2] Renew [3] Release
 set /p ipc="Secim: "
 if "%ipc%"=="1" ipconfig /all
 if "%ipc%"=="2" ipconfig /renew
 if "%ipc%"=="3" ipconfig /release
-pause
-goto MENU
+pause & goto MENU
 
 :FIREWALL_MENU
-cls
-echo [1] AC [2] KAPAT
+cls & echo [1] AC [2] KAPAT
 set /p fw="Secim: "
 if "%fw%"=="1" netsh advfirewall set allprofiles state on
 if "%fw%"=="2" netsh advfirewall set allprofiles state off
-pause
-goto MENU
+pause & goto MENU
 
 :DETAIL
-cls
-set /p diskID="Disk No: "
-(echo select disk %diskID% & echo detail disk) > ds.txt
-diskpart /s ds.txt & del ds.txt
-pause
-goto MENU
+cls & set /p diskID="Disk No: " & (echo select disk %diskID% & echo detail disk) > ds.txt
+diskpart /s ds.txt & del ds.txt & pause & goto MENU
 
 :CPUINFO
-cls
-wmic cpu get caption, name
-pause
-goto MENU
+cls & wmic cpu get caption, name & pause & goto MENU
 
 :MEMORY
-cls
-wmic memorychip get capacity, speed
-pause
-goto MENU
+cls & wmic memorychip get capacity, speed & pause & goto MENU
 
 :USERS
-cls
-net user
-pause
-goto MENU
+cls & net user & pause & goto MENU
 
 :STORAGE
-cls
-wmic logicaldisk get caption, freespace, size
-pause
-goto MENU
+cls & wmic logicaldisk get caption, freespace, size & pause & goto MENU
 
 :WINVER
-start winver
-goto MENU
+start winver & goto MENU
 
 :LAST_FORMAT_DATE
-cls
-wmic os get installdate
-pause
-goto MENU
+cls & wmic os get installdate & pause & goto MENU
 
 :PING_TEST
-cls
-set /p ip="IP: "
-ping %ip%
-pause
-goto MENU
+cls & set /p ip="IP: " & ping %ip% & pause & goto MENU
 
 :TRACERT_TEST
-cls
-set /p ip="IP: "
-tracert %ip%
-pause
-goto MENU
+cls & set /p ip="IP: " & tracert %ip% & pause & goto MENU
 
 :NETSTAT_TEST
-netstat -an
-pause
-goto MENU
+netstat -an & pause & goto MENU
 
 :ARP_TEST
-arp -a
-pause
-goto MENU
+arp -a & pause & goto MENU
 
 :ROUTE_TEST
-route print
-pause
-goto MENU
+route print & pause & goto MENU
 
 :NBTSTAT_TEST
-nbtstat -n
-pause
-goto MENU
+nbtstat -n & pause & goto MENU
+
+:CLEANUP
+cleanmgr /sagerun:1 & pause & goto MENU
+
+:OPTIMIZE_RAM
+cls & echo RAM Optimizasyonu yapiliyor... & start /wait rundll32.exe advapi32.dll,ProcessIdleTasks & echo [TAMAM] & pause & goto MENU
