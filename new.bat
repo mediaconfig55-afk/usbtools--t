@@ -1,4 +1,9 @@
 @echo off
+echo >>> GITHUB TEST ISARETI 999 <<<
+pause
+setlocal EnableDelayedExpansion
+...
+
 setlocal EnableDelayedExpansion
 chcp 65001 >nul
 cd /d "%~dp0"
