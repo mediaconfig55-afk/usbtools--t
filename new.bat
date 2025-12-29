@@ -18,7 +18,7 @@ if %errorLevel% neq 0 (
 :: ======================================================
 :: SABIT AYARLAR
 :: ======================================================
-set "VERSION=7.5"
+set "VERSION=7.4 TEST"
 
 echo.
 echo *** GITHUB GUNCELLEME TESTI AKTIF ***
