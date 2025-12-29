@@ -11,13 +11,13 @@ if %errorLevel% neq 0 (
 )
 
 :: --- AYARLAR VE GÜNCELLEME SİSTEMİ ---
-SET "VERSION=7.0"
+SET "VERSION=7.1"
 :: Senin verdiğin yeni GitHub Raw Linki:
 SET "RAW_LINK=https://raw.githubusercontent.com/mediaconfig55-afk/usbtools--t/main/new.bat"
 
 title Professional IT Support & USB Suite v%VERSION% - Code Emre Bilgin
 mode con: cols=110 lines=52
-color 0A
+color 0B
 
 echo [+] Guncellemeler Kontrol Ediliyor...
 powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $u = '%RAW_LINK%?v=' + (Get-Random); try { (New-Object Net.WebClient).DownloadFile($u, '%temp%\new_up.bat') } catch { exit }" >nul 2>&1
