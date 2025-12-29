@@ -18,7 +18,7 @@ if %errorLevel% neq 0 (
 :: ======================================================
 :: SABIT AYARLAR
 :: ======================================================
-set "VERSION=7.3"
+set "VERSION=7.4"
 
 title Professional IT Support & USB Suite v%VERSION% - Code Emre Bilgin
 mode con: cols=110 lines=52
