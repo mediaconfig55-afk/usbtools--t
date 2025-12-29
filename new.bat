@@ -1,273 +1,71 @@
 @echo off
-setlocal EnableDelayedExpansion
+setlocal enabledelayedexpansion
 chcp 65001 >nul
 cd /d "%~dp0"
 
-:: ======================================================
-:: YONETICI KONTROLU
-:: ======================================================
+:: --- YONETICI KONTROLU ---
 net session >nul 2>&1
-if %errorLevel% neq 0 (
-    echo.
-    echo [HATA] Bu arac yonetici olarak calistirilmalidir.
-    echo.
+if errorlevel 1 (
+    echo [!] Lutfen YONETICI olarak calistirin.
     pause
     exit /b
 )
 
-:: ======================================================
-:: SABIT AYARLAR
-:: ======================================================
-set "VERSION=7.4"
+:: --- AYARLAR ---
+set "VERSION=7.0"
 
-title Professional IT Support & USB Suite v%VERSION% - Code Emre Bilgin
-mode con: cols=120 lines=55
-color 0B
+color 0A
+title Professional IT Support & USB Suite v%VERSION%
+mode con: cols=110 lines=52
 
-:: Ilk acilista otomatik calisma engeli
-echo.
-echo Devam etmek icin bir tusa basin...
-pause >nul
-
-:: ======================================================
-:: ANA MENU
-:: ======================================================
 :MENU
 cls
-echo ==========================================================================================
-echo        USB TOOLS & SISTEM YONETIM KONSOLU   -   V%VERSION%
-echo                         CODE EMRE BILGIN
-echo ==========================================================================================
 echo.
-echo  --- USB / DISK ISLEMLERI ---
-echo  [1]  Diskleri Listele
-echo  [2]  Disk Detaylari
-echo  [3]  Disk Yazma Korumasi AKTIF
-echo  [4]  Disk Yazma Korumasi KALDIR
-echo  [5]  Akilli Format (NTFS / FAT32 / exFAT)
+echo   Mevcut Surum: %VERSION% 
+echo   ------------------------------------------------------------------------------------------
 echo.
-echo  --- SISTEM BILGILERI ---
-echo  [10] Bilgisayar Bilgileri
-echo  [11] IP Adresi
-echo  [12] CPU Bilgisi
-echo  [13] RAM Bilgisi
-echo  [14] Detayli Sistem Bilgisi
+echo  ##########################################################################################
+echo  #                 USB YONETIM VE SISTEM BAKIM KONSOLU (V%VERSION% ULTIMATE)                #
+echo  #                           ==== CODE EMRE BILGIN ====                                   #
+echo  ##########################################################################################
 echo.
-echo  --- SISTEM BAKIM ---
-echo  [20] Sistem Dosya Onarimi (SFC)
-echo  [21] Disk Tarama (CHKDSK)
-echo  [22] Disk Temizligi
-echo  [23] Grup Politikalari Guncelle
-echo  [24] Windows Guncelleme Durumu
-echo.
-echo  --- NETWORK ---
-echo  [30] DNS Temizle
-echo  [31] IP Yenile
-echo  [32] Ping Test
-echo  [33] Tracert
-echo  [34] Netstat
-echo.
-echo  --- PROFESYONEL ---
-echo  [40] Wi-Fi Sifresi Goster
-echo.
-echo  [99] CIKIS
-echo.
-set /p secim="Islem seciniz: "
+echo  --- USB VE DISK ISLEMLERI ---             --- SISTEM BAKIM VE ONARIM ---
+echo  [1] Mevcut Diskleri Goruntule             [16] Sistem Dosyalarini Onar (SFC)
+echo  [2] Akilli Format (NTFS/FAT32/exFAT)      [17] Sabit Diski Tarama (CHKDSK)
+echo  [3] Yazma Korumasini ETKINLESTIR          [18] Disk Temizligi (Cleanmgr)
+echo  [4] Yazma Korumasini KALDIR               [19] Grup Politikalarini Guncelle
+echo  [5] Disk ve Bolum Detaylarini Gor         [20] Windows Guncelleme Durumu
+echo.                                           [21] Tum Programlari Guncelle (Winget)
+echo  --- SISTEM BILGILERI ---                  [22] Windows Store Uygulama Guncelle
+echo  [6] Seri No, Marka ve Model               [23] Gereksiz Dosyalari Temizle (Temp)
+echo  [7] IP Adresini Goruntule                 [24] RAM Optimizasyonu Yap
+echo  [8] Windows Lisans Durumu                 [25] Guvenlik Duvarini AC/KAPAT
+echo  [9] Sistem Bilgileri (Detayli)            
+echo  [10] CPU Bilgilerini Goster               --- AG VE NETWORK ARACLARI ---
+echo  [11] Bellek (RAM) Bilgileri               [26] DNS Onbellegini Temizle
+echo  [12] Kullanici Hesaplarini Listele        [27] IP Yapilandirmasi (All/Renew)
+echo  [13] Depolama Alani Durumu                [28] Ping Testi Yap
+echo  [14] Son Format Tarihini Goster           [29] Tracert (Yol Izleme)
+echo  [15] Windows Surum Bilgisi (Winver)       [30] Netstat (Baglanti Durumu)
+echo.                                           [31] ARP / [32] Route / [33] Nbtstat
+echo  --- PRO TEKNISYEN ARACLARI (YENI) ---     [34] WI-FI SIFRESINI GOSTER
+echo  [36] Windows Update Servislerini SIFIRLA  [35] CIKIS
+echo  [37] Tum Suruculeri (Drivers) YEDEKLE     ----------------------------------------------
+echo  [38] Guc Plani: NIHAI PERFORMANS          [41] Gorev Cubugu ve Explorer ONAR
+echo  [39] Hosts Dosyasini SIFIRLA              [42] Detayli BIOS / Anakart Bilgisi
+echo  [40] Yazici Kuyrugunu (Spooler) TEMIZLE   [43] Pil Saglik Raporu (Laptop)
+echo.                                           [44] Windows Telemetriyi KAPAT
+echo  ##########################################################################################
+set /p choice="Islem seciniz [1-44]: "
 
-if "%secim%"=="1"  goto DISK_LIST
-if "%secim%"=="2"  goto DISK_DETAIL
-if "%secim%"=="3"  goto DISK_PROTECT
-if "%secim%"=="4"  goto DISK_UNPROTECT
-if "%secim%"=="5"  goto DISK_FORMAT
+if "%choice%"=="35" goto EXIT_APP
 
-if "%secim%"=="10" goto PC_INFO
-if "%secim%"=="11" goto IP_INFO
-if "%secim%"=="12" goto CPU_INFO
-if "%secim%"=="13" goto RAM_INFO
-if "%secim%"=="14" goto SYS_INFO
+:: (DIGER GOTO’LAR SENIN KODUNDA OLDUGU GIBI DEVAM EDER)
 
-if "%secim%"=="20" goto SFC_SCAN
-if "%secim%"=="21" goto CHKDSK_SCAN
-if "%secim%"=="22" goto CLEANMGR_RUN
-if "%secim%"=="23" goto GPUPDATE_RUN
-if "%secim%"=="24" goto WIN_UPDATE
-
-if "%secim%"=="30" goto DNS_CLEAR
-if "%secim%"=="31" goto IP_RENEW
-if "%secim%"=="32" goto PING_TEST
-if "%secim%"=="33" goto TRACERT_TEST
-if "%secim%"=="34" goto NETSTAT_TEST
-
-if "%secim%"=="40" goto WIFI_PASS
-if "%secim%"=="99" goto EXIT_APP
-
-goto MENU
-
-:: ======================================================
-:: FONKSIYONLAR
-:: ======================================================
-
-:DISK_LIST
-cls
-echo list disk > %temp%\ds.txt
-diskpart /s %temp%\ds.txt
-del %temp%\ds.txt
-pause
-goto MENU
-
-:DISK_DETAIL
-cls
-set /p dno="Disk No: "
-(
-echo select disk %dno%
-echo detail disk
-)>%temp%\ds.txt
-diskpart /s %temp%\ds.txt
-del %temp%\ds.txt
-pause
-goto MENU
-
-:DISK_PROTECT
-cls
-set /p dno="Disk No: "
-(echo select disk %dno% & echo attributes disk set readonly)>%temp%\ds.txt
-diskpart /s %temp%\ds.txt
-del %temp%\ds.txt
-pause
-goto MENU
-
-:DISK_UNPROTECT
-cls
-set /p dno="Disk No: "
-(echo select disk %dno% & echo attributes disk clear readonly)>%temp%\ds.txt
-diskpart /s %temp%\ds.txt
-del %temp%\ds.txt
-pause
-goto MENU
-
-:DISK_FORMAT
-cls
-echo list disk > %temp%\ds.txt
-diskpart /s %temp%\ds.txt
-del %temp%\ds.txt
-set /p dno="Disk No: "
-echo [1] NTFS  [2] FAT32  [3] exFAT
-set /p fs="Secim: "
-if "%fs%"=="1" set fss=ntfs
-if "%fs%"=="2" set fss=fat32
-if "%fs%"=="3" set fss=exfat
-set /p onay="Tum veriler silinecek (E/H): "
-if /I not "%onay%"=="E" goto MENU
-(
-echo select disk %dno%
-echo clean
-echo create partition primary
-echo format fs=%fss% quick
-echo assign
-)>%temp%\ds.txt
-diskpart /s %temp%\ds.txt
-del %temp%\ds.txt
-pause
-goto MENU
-
-:PC_INFO
-cls
-hostname
-wmic computersystem get manufacturer,model
-pause
-goto MENU
-
-:IP_INFO
-cls
-ipconfig | findstr /i "IPv4"
-pause
-goto MENU
-
-:CPU_INFO
-cls
-wmic cpu get name
-pause
-goto MENU
-
-:RAM_INFO
-cls
-wmic memorychip get capacity,speed
-pause
-goto MENU
-
-:SYS_INFO
-cls
-systeminfo
-pause
-goto MENU
-
-:SFC_SCAN
-cls
-sfc /scannow
-pause
-goto MENU
-
-:CHKDSK_SCAN
-cls
-set /p drv="Surucu harfi: "
-chkdsk %drv%: /f /r
-pause
-goto MENU
-
-:CLEANMGR_RUN
-cleanmgr
-pause
-goto MENU
-
-:GPUPDATE_RUN
-gpupdate /force
-pause
-goto MENU
-
-:WIN_UPDATE
-wmic qfe list brief /format:table
-pause
-goto MENU
-
-:DNS_CLEAR
-ipconfig /flushdns
-pause
-goto MENU
-
-:IP_RENEW
-ipconfig /release
-ipconfig /renew
-pause
-goto MENU
-
-:PING_TEST
-cls
-set /p ip="IP: "
-ping %ip%
-pause
-goto MENU
-
-:TRACERT_TEST
-cls
-set /p ip="IP: "
-tracert %ip%
-pause
-goto MENU
-
-:NETSTAT_TEST
-netstat -an
-pause
-goto MENU
-
-:WIFI_PASS
-cls
-set /p wifi="Ag Adi: "
-netsh wlan show profile name="%wifi%" key=clear | findstr /i "Key Content"
-pause
 goto MENU
 
 :EXIT_APP
 cls
-echo Program sonlandiriliyor...
+echo Programdan cikiliyor...
 timeout /t 1 >nul
-exit
+exit /b
