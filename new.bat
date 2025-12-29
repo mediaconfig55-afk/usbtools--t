@@ -19,7 +19,12 @@ if errorlevel 1 (
 )
 
 :START
-set "VERSION=7.4"
+set "VERSION=7.5 GITHUB TEST"
+
+echo *** BU SURUM GITHUB'DAN CEKILDI ***
+pause
+
+
 title USB YONETIM VE SISTEM BAKIM KONSOLU v%VERSION%
 mode con: cols=110 lines=52
 color 0B
