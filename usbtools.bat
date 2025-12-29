@@ -12,7 +12,7 @@ if %errorlevel% neq 0 (
 )
 
 :: --- AYARLAR ---
-set "VERSION=7.0"
+set "VERSION=7.1 TEST VERSİYON"
 
 :: --- PENCERE AYARLARI ---
 color 0A
