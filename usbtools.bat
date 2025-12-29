@@ -29,7 +29,7 @@ echo  #                                  USB YONETIM, SISTEM BAKIM VE ONARIM KON
 echo  #                                         ==== CODE EMRE BILGIN - FINAL ====                                            #
 echo  #########################################################################################################################
 echo.
-echo  --- USB VE DISK ISLEMLERI ---             --- SISTEM ONARIM (DISM/SFC) ---          --- AG VE INTERNET ---
+echo  •••• USB VE DISK ISLEMLERI ••••             •••• SISTEM ONARIM (DISM/SFC) ••••          •••• AG VE INTERNET ••••
 echo  [1]  Diskleri Listele                     [26] SFC (Sistem Dosya Taramasi)          [51] DNS Onbellegini Temizle
 echo  [2]  Akilli Format (NTFS/FAT32/exFAT)     [27] CHKDSK (Disk Hata Denetimi)          [52] IP Yenile (Renew/Release)
 echo  [3]  Yazma Korumasini ETKINLESTIR         [28] DISM CheckHealth (Hizli)             [53] Ping Testi (Google DNS)
@@ -40,8 +40,8 @@ echo  [7]  Surucu Harfi Degistir                [32] Suruculeri (Drivers) Yedekl
 echo  [8]  Disk Yonetimini Ac                   [33] Yazici Kuyrugunu (Spooler) Sil       [58] MAC Adresini Goster
 echo  [9]  USB Baglanti Gecmisini Temizle       [34] Icon Bellegini (Cache) Sifirla       [59] ARP Tablosunu Listele
 echo                                            [35] Explorer.exe Yeniden Baslat          [60] Internet Baglanti Kontrolu
-echo  --- DONANIM VE SISTEM BILGISI ---
-echo  [10] Seri No, Marka ve Model              --- PERFORMANS VE TEMIZLIK ---            --- HIZLI ERISIM ARACLARI ---
+echo  •••• DONANIM VE SISTEM BILGISI ••••
+echo  [10] Seri No, Marka ve Model              •••• PERFORMANS VE TEMIZLIK ••••            •••• HIZLI ERISIM ARACLARI ••••
 echo  [11] IP Adresini Goruntule                [36] Temp/Gecici Dosyalari Sil            [61] Aygit Yoneticisi
 echo  [12] Windows Lisans Durumu                [37] RAM Optimizasyonu Yap                [62] Denetim Masasi
 echo  [13] Detayli Sistem Bilgisi               [38] Disk Temizleme (Cleanmgr)            [63] Gorev Yoneticisi
@@ -51,7 +51,7 @@ echo  [16] Anakart ve BIOS Bilgisi              [41] Olay Gunluklerini (Logs) Si
 echo  [17] Ekran Karti (GPU) Bilgisi            [42] Windows Magaza Uyg. Guncelle         [67] DirectX Tanilama (DxDiag)
 echo  [18] Ses Suruculeri Bilgisi               [43] Tum Programlari Guncelle (Winget)    [68] Ekran Klavyesi (OSK)
 echo  [19] Pil Saglik Raporu (Laptop)           [44] Hosts Dosyasini Sifirla
-echo  [20] Son Format Tarihi                    [45] Telemetriyi Kapat                    --- GUVENLIK VE GUC ---
+echo  [20] Son Format Tarihi                    [45] Telemetriyi Kapat                    •••• GUVENLIK VE GUC ••••
 echo  [21] Baslangic Uygulamalari               [46] Nihai Performans Modu                [69] Administrator Hesabini AC
 echo  [22] Kullanici Hesaplari                  [47] Hazirda Bekletmeyi (Hibernate) KAPAT [70] Administrator Hesabini KAPAT
 echo  [23] Depolama Alanlari                    [48] Dosya Uzantilarini Goster/Gizle      [71] Guvenlik Duvarini AC/KAPAT
@@ -61,7 +61,7 @@ echo                                                                            
 echo  ################################################################################    [75] CIKIS
 echo.
 
-set /p choice="Islem numarasini giriniz [1-75]: "
+set /p choice="Lütfen Islem numarasini giriniz [1-75]: "
 
 :: --- YONLENDIRME BLOGU ---
 if "%choice%"=="1" goto LIST_DISK
