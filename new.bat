@@ -13,15 +13,13 @@ if %errorLevel% neq 0 (
     goto :EOF
 )
 
-
-:: --- AYARLAR VE GÜNCELLEME SİSTEMİ ---
+:: --- SABİT AYARLAR ---
 SET "VERSION=7.3"
-:: Senin verdiğin yeni GitHub Raw Linki:
-SET "RAW_LINK=https://raw.githubusercontent.com/mediaconfig55-afk/usbtools--t/main/new.bat"
 
 title Professional IT Support & USB Suite v%VERSION% - Code Emre Bilgin
 mode con: cols=110 lines=52
 color 0B
+
 
 echo [+] Guncellemeler Kontrol Ediliyor...
 
