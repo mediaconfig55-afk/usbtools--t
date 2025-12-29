@@ -13,17 +13,17 @@ if %errorLevel% neq 0 (
 
 :: Renk ve Pencere Ayarları
 color 0B
-title Professional IT Support & USB Suite V7.8 - Code Emre Bilgin
+title Professional IT Support & USB Suite V7.9 - Code Emre Bilgin
 mode con: cols=110 lines=50
 
 
-set "VERSION=7.8"
+set "VERSION=7.9"
 
 :MENU
 cls
 echo.
 echo  ##########################################################################################
-echo  #                 USB YONETIM VE SISTEM BAKIM KONSOLU (V7.8 ULTIMATE)                    #
+echo  #                 USB YONETIM VE SISTEM BAKIM KONSOLU (V7.9 ULTIMATE)                    #
 echo  #                            ==== CODE EMRE BILGIN ====                                  #
 echo  ##########################################################################################
 echo.
