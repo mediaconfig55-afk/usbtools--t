@@ -12,10 +12,10 @@ if %errorlevel% neq 0 (
 )
 
 :: --- AYARLAR ---
-set "VERSION=7.1 TEST VERSİYON"
+set "VERSION=7.5 TEST VERSİYON"
 
 :: --- PENCERE AYARLARI ---
-color 0A
+color 0B
 title Professional IT Support & USB Suite v%VERSION%
 mode con: cols=110 lines=52
 
