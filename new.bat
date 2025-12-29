@@ -6,9 +6,13 @@ cd /d "%~dp0"
 :: --- YÖNETİCİ KONTROLÜ ---
 net session >nul 2>&1
 if %errorLevel% neq 0 (
-    echo [HATA] Lutfen bu dosyayi SAG TIKLAYIP "Yonetici Olarak Calistir" deyin.
-    pause & exit
+    echo.
+    echo [HATA] Bu arac yonetici olarak calistirilmalidir.
+    echo.
+    pause
+    goto :EOF
 )
+
 
 :: --- AYARLAR VE GÜNCELLEME SİSTEMİ ---
 SET "VERSION=7.3"
