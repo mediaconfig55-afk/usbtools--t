@@ -3,11 +3,11 @@ setlocal EnableExtensions EnableDelayedExpansion
 chcp 65001 >nul
 cd /d "%~dp0"
 
-:: ===============================
+:: ======================================
 :: USBTOOLS – STABLE CORE
-:: ===============================
+:: ======================================
 
-:: --- ADMIN KONTROL ---
+:: --- YONETICI KONTROLU ---
 net session >nul 2>&1
 if errorlevel 1 (
     echo [!] Lutfen bu dosyayi SAG TIKLAYIP "Yonetici Olarak Calistir" secin.
@@ -26,7 +26,7 @@ echo  ===============================
 echo   USBTOOLS v7.0 (STABLE)
 echo  ===============================
 echo.
-echo  [1] Test Mesaji
+echo  [1] GitHub Test Mesaji
 echo  [2] IP Adresini Goster
 echo  [3] Cikis
 echo.
