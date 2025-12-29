@@ -47,7 +47,7 @@ echo  [14] Son Format Tarihini Goster           [29] Tracert (Yol Izleme)
 echo  [15] Windows Surum Bilgisi (Winver)       [30] Netstat (Baglanti Durumu)
 echo.                                           [31] ARP / [32] Route / [33] Nbtstat
 echo  --- PRO TEKNISYEN ARACLARI (YENI) ---     [34] WI-FI SIFRESINI GOSTER
-echo  [36] Windows Update Servislerini SIFIRLA  [35] CIKIS
+echo  [36] Windows Update Servislerini SIFIRLA  [35] CIKIS.
 echo  [37] Tum Suruculeri (Drivers) YEDEKLE     ----------------------------------------------
 echo  [38] Guc Plani: NIHAI PERFORMANS          [41] Gorev Cubugu ve Explorer ONAR
 echo  [39] Hosts Dosyasini SIFIRLA              [42] Detayli BIOS / Anakart Bilgisi
