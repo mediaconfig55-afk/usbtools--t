@@ -29,6 +29,8 @@ echo  =                                  USB YONETIM, SISTEM BAKIM VE ONARIM KON
 echo  =                                         •••• CODE EMRE BILGIN - FINAL ••••                                            =
 echo  =========================================================================================================================
 echo.
+echo.
+echo.
 echo  •••• USB VE DISK ISLEMLERI ••••             •••• SISTEM ONARIM (DISM/SFC) ••••          •••• AG VE INTERNET ••••
 echo  [1]  Diskleri Listele                     [26] SFC (Sistem Dosya Taramasi)          [51] DNS Onbellegini Temizle
 echo  [2]  Akilli Format (NTFS/FAT32/exFAT)     [27] CHKDSK (Disk Hata Denetimi)          [52] IP Yenile (Renew/Release)
