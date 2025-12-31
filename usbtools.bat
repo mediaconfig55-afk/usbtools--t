@@ -45,6 +45,7 @@ echo  [7]  Surucu Harfi Degistir                [32] Suruculeri (Drivers) Yedekl
 echo  [8]  Disk Yonetimini Ac                   [33] Yazici Kuyrugunu (Spooler) Sil       [58] MAC Adresini Goster
 echo  [9]  USB Baglanti Gecmisini Temizle       [34] Icon Bellegini (Cache) Sifirla       [59] ARP Tablosunu Listele
 echo                                            [35] Explorer.exe Yeniden Baslat          [60] Internet Baglanti Kontrolu
+echo =========================================================================================================================
 echo  •••• DONANIM VE SISTEM BILGISI ••••
 echo  [10] Seri No, Marka ve Model              •••• PERFORMANS VE TEMIZLIK ••••            •••• HIZLI ERISIM ARACLARI ••••
 echo  [11] IP Adresini Goruntule                [36] Temp/Gecici Dosyalari Sil            [61] Aygit Yoneticisi
@@ -55,7 +56,7 @@ echo  [15] RAM (Bellek) Detaylari               [40] Pano (Clipboard) Temizle   
 echo  [16] Anakart ve BIOS Bilgisi              [41] Olay Gunluklerini (Logs) Sil         [66] Sistem Yapilandirma (Msconfig)
 echo  [17] Ekran Karti (GPU) Bilgisi            [42] Windows Magaza Uyg. Guncelle         [67] DirectX Tanilama (DxDiag)
 echo  [18] Ses Suruculeri Bilgisi               [43] Tum Programlari Guncelle (Winget)    [68] Ekran Klavyesi (OSK)
-echo  [19] Pil Saglik Raporu (Laptop)           [44] Hosts Dosyasini Sifirla
+echo  [19] Pil Saglik Raporu (Laptop)           [44] Hosts Dosyasini Sifirla              ====================================
 echo  [20] Son Format Tarihi                    [45] Telemetriyi Kapat                    •••• GUVENLIK VE GUC ••••
 echo  [21] Baslangic Uygulamalari               [46] Nihai Performans Modu                [69] Administrator Hesabini AC
 echo  [22] Kullanici Hesaplari                  [47] Hazirda Bekletmeyi (Hibernate) KAPAT [70] Administrator Hesabini KAPAT
