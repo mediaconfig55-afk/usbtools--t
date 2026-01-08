@@ -13,7 +13,7 @@ if %errorLevel% neq 0 (
     color 0C
     echo.
     echo    ┌──────────────────────────────────────────────────────────────────────────┐
-    echo    │                 HATA: YÖNETİCİ YETKİSİ GEREKLİ                           │
+    echo    │                 HATA: YÖNETİCİ YETKİSİ GEREKLİ...!!!                     │
     echo    ├──────────────────────────────────────────────────────────────────────────┤
     echo    │ Lütfen bu dosyaya sağ tıklayıp "Yönetici Olarak Çalıştır"ı seçin.        │
     echo    └──────────────────────────────────────────────────────────────────────────┘
@@ -48,7 +48,7 @@ echo    ║   ██║   ██║╚════██║██╔══�
 echo    ║   ╚██████╔╝███████║██████╔╝       ██║   ╚██████╔╝╚██████╔╝███████╗███████║                                              ║
 echo    ║    ╚═════╝ ╚══════╝╚═════╝        ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝                                              ║
 echo    ║                                                                                                                         ║
-echo    ║                     USB YONETIM, SISTEM BAKIM VE ONARIM KONSOLU (v11)                                                  ║
+echo    ║                     USB YONETIM, SISTEM BAKIM VE ONARIM KONSOLU (v11)                                                   ║
 echo    ║   -------------------------------------------------------------------------------------------------------------------   ║
 echo    ║                          •••• CODE EMRE BILGIN - FINAL EDITION ••••                                                     ║
 echo    ║   -------------------------------------------------------------------------------------------------------------------   ║
@@ -56,7 +56,7 @@ echo    ║                                 •••• CMD C
 echo    ║                                                                                                                         ║
 echo    ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 echo    ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-echo      » [ STATUS ] CPU: %cpuLoad%%%  │  RAM: %usedRAM% MB / %totalRAM_GB% GB  │  LOG: ACTIVE  │  YEAR: 2026                     
+echo      » [ STATUS ] CPU: %cpuLoad%%%  │  RAM: %usedRAM% MB / %totalRAM_GB% GB  │  LOG: ACTIVE  │  YEAR: 2026 »                    
 echo    └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 echo.
 echo    [ DISK ^& USB YONETIMI ]           [ SISTEM ONARIM ^& BAKIM ]          [ AG ^& INTERNET AYARLARI ]        [ EKSTRA ARACLAR ^& GUVENLIK ]
@@ -91,7 +91,7 @@ echo    │ [23] Depolama Alanlari       │   │ [49] Gizli Dosyalari Go
 echo    │ [24] BIOS Surum Detayi       │   │ [50] Sistem Calisma Suresi   │   │ [75] Guc Planini Sifirla     │
 echo    └──────────────────────────────┘   └──────────────────────────────┘   └──────────────────────────────┘
 echo.
-set /p choice="   ╔═══[ SECIMINIZI YAPIN (0-99) ]═══> "
+set /p choice="   ╔══»═[ SECIMINIZI YAPIN (0-99) ]═══> "
 
 echo [%date% %time%] Kullanici Secimi: %choice% >> "%logFile%" 2>nul
 
