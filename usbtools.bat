@@ -1,5 +1,3 @@
-tamam güzel şu kodlardaki log nereye kayıt ediliyor.;
-
 @echo off
 setlocal enabledelayedexpansion
 chcp 65001 >nul
